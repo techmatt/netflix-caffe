@@ -1,16 +1,6 @@
 
 #include "main.h"
 
-#include <leveldb/db.h>
-#include <leveldb/write_batch.h>
-
-#include <stdint.h>
-#include <sys/stat.h>
-#include <direct.h>
-
-#include "caffe/proto/caffe.pb.h"
-
-using namespace caffe;
 /*
 void LevelDBExporter::exportDB(const FCSDataset &dataset, const string &outDir, int epochs, int afflictedOversampleCount, int evalSamplesPerPatient, int startPatient, int endPatient)
 {
