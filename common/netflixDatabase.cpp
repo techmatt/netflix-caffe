@@ -142,7 +142,7 @@ void NetflixDatabase::loadText()
 void NetflixDatabase::saveBinary()
 {
     BinaryDataStreamFile out(constants::netflixDir + "database.dat", true);
-    out.writePrimitive(allRatings);
+    out.writePrimitive(allRatingsStorage);
     out.closeStream();
 }
 
@@ -150,22 +150,33 @@ void NetflixDatabase::loadBinary()
 {
     cout << "Loading from disk..." << endl;
     BinaryDataStreamFile in(constants::netflixDir + "database.dat", false);
-    in.readPrimitive(allRatings);
+    in.readPrimitive(allRatingsStorage);
     in.closeStream();
 
     cout << "Adding all users..." << endl;
     movieIndexCount = 0;
-    for (const Rating &r : allRatings)
+    for (const Rating &r : allRatingsStorage)
     {
-        if (users.count(r.userID) == 0)
+        if (allUsers.count(r.userID) == 0)
         {
             User *newUser = new User(r.userID);
-            users[r.userID] = newUser;
-            userList.push_back(newUser);
+            allUsers[r.userID] = newUser;
+
+            if (newUser->test)
+                testUsers.push_back(newUser);
+            else
+                trainUsers.push_back(newUser);
         }
 
         movieIndexCount = max(movieIndexCount, r.movieIndex + 1);
-        users[r.userID]->ratings.push_back(r);
+        
+        User &u = *allUsers[r.userID];
+        u.ratings.push_back(r);
+
+        if (u.test)
+            testRatings.push_back(r);
+        else
+            trainRatings.push_back(r);
     }
     cout << "done" << endl;
 }
@@ -181,6 +192,6 @@ void NetflixDatabase::processMovieFile(const string &filename, int movieIndex)
         const int userID = convert::toInt(words[0]);
         const int rating = convert::toInt(words[1]);
 
-        allRatings.push_back(Rating(movieIndex, userID, rating));
+        allRatingsStorage.push_back(Rating(movieIndex, userID, rating));
     }
 }

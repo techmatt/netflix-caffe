@@ -18,8 +18,11 @@ struct User
     User(int _id)
     {
         id = _id;
+        test = (id % 4 == 0);
+        //test = (id % 1000 != 0);
     }
     int id;
+    bool test;
     vector<Rating> ratings;
 };
 
@@ -37,7 +40,7 @@ struct NetflixDatabase
     vector<const User*> trainUsers;
     vector<const User*> testUsers;
 
-    vector<Rating> trainRatings;
+    vector<Rating> allRatingsStorage;
 
     vector<Rating> trainRatings;
     vector<Rating> testRatings;

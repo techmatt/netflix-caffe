@@ -10,8 +10,8 @@ void goB()
 
     cout << "movies: " << database.movieIndexCount << endl;
 
-    database.saveLevelDB(constants::netflixDir + "caffe/LevelDBTrain", 1000000);
-    database.saveLevelDB(constants::netflixDir + "caffe/LevelDBTest", 10000);
+    database.saveLevelDB(constants::netflixDir + "caffe/LevelDBTrain", 1000);
+    database.saveLevelDB(constants::netflixDir + "caffe/LevelDBTest", 1000);
 }
 
 void main()

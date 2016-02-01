@@ -57,7 +57,7 @@ void NetworkProcessor::evaluateRating(const NetflixDatabase &database, const Rat
 
 void NetworkProcessor::evaluateAllUsers(const NetflixDatabase &database)
 {
-    for (auto &r : database.allRatings)
+    for (auto &r : database.trainRatings)
     {
         cout << "Evaluating rating " << r.userID << endl;
         evaluateRating(database, r);

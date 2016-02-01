@@ -72,6 +72,8 @@
       <AdditionalIncludeDirectories>./;C:\Code\mLib\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.0\include;c:\code\caffe\caffe-windows\3rdparty\include;c:\code\caffe\caffe-windows\src;c:\code\caffe\caffe-windows\include;c:\Code\mLibExternal\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
